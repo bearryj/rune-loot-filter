@@ -4,7 +4,7 @@ name: header
 */
 
 meta {
-    name = "Storn's Iron Filter";
+    name = "Iron Filter Custom";
     description = "A Filter for the Ironman Experience.     Turn off GE value and enjoy!";
 	}
 
