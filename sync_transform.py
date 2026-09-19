@@ -14,6 +14,10 @@ EXEMPT = {
 # New:   ff(SS/S) e6(A 90%) cc(B 80%) 99(E 60%) 66(C 40%).
 ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "99", "33": "66"}
 
+# Custom: faint tiers get a black text outline (textAccent = 2) so low-opacity
+# labels stay readable. B (cc 80%), E (99 60%), C (66 40%); A/SS/S stay clean.
+FAINT_ALPHAS = {"cc", "99", "66"}
+
 lines = open(SRC, encoding="utf-8", errors="replace").read().splitlines()
 
 out = []
@@ -21,7 +25,8 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0}
+         "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0,
+         "outline_added": 0, "outline_changed": 0, "accent_fixed": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -97,6 +102,32 @@ def transform_block(header_idx, name, block_lines):
         filtered = [l for l in new_lines if not re.match(r'^\s*icon\s*=\s*Sprite\(41,0\)', l)]
         stats["icon_removed"] += len(new_lines) - len(filtered)
         new_lines = filtered
+    # custom: black text outline on faint tiers (B cc / E 99 / C 66) for readability
+    faint = any((fm := field_pat.match(l)) and fm.group(2) in ("textColor", "color")
+                and fm.group(3).lower()[:2] in FAINT_ALPHAS for l in new_lines)
+    if faint:
+        acc_seen = False
+        for j, l in enumerate(new_lines):
+            am = re.match(r'^([ \t]*)textAccent\s*=\s*(\d+)(.*)$', l)
+            if am:
+                acc_seen = True
+                if am.group(2) != "2":
+                    new_lines[j] = f'{am.group(1)}textAccent = 2{am.group(3)}'
+                    stats["outline_changed"] += 1
+        if not acc_seen:
+            idx = max(k for k, l in enumerate(new_lines)
+                      if (fm := field_pat.match(l)) and fm.group(2) in ("textColor", "color"))
+            l = new_lines[idx]
+            indent = field_pat.match(l).group(1)
+            cont = " \\" if l.rstrip().endswith("\\") else ""
+            new_lines.insert(idx + 1, f'{indent}textAccent = 2;{cont}')
+            stats["outline_added"] += 1
+        # make the accent fully opaque so the outline is solid black
+        for j, l in enumerate(new_lines):
+            am = re.match(r'^([ \t]*)textAccentColor\s*=\s*"#([0-9a-fA-F]{2})([0-9a-fA-F]{6})"(.*)$', l)
+            if am and am.group(2).lower() != "ff":
+                new_lines[j] = f'{am.group(1)}textAccentColor = "#ff{am.group(3)}"{am.group(4)}'
+                stats["accent_fixed"] += 1
     return new_lines
 
 while i < n:
