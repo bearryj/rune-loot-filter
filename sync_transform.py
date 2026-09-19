@@ -47,7 +47,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "rune_colors": 0, "meta_renamed": 0}
+         "text_opacified": 0, "menu_opacified": 0, "rune_colors": 0, "meta_renamed": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -87,9 +87,20 @@ def transform_block(header_idx, name, block_lines):
             newval = "00" + old_bg[2:]
             stats["bg_zeroed"] += 1
             transformed = True
-        if fname in ("textColor", "color") and old_bg is not None and val_l == "ffffffff":
-            newval = old_bg  # keep original bg case
-            stats["text_swapped"] += 1
+        elif fname in ("textColor", "color"):
+            # Custom: ground text must be fully opaque. Swapped (was white) or inherited
+            # tier alpha from Storn's semi-transparent boxes -> force alpha ff, keep hue.
+            if old_bg is not None and val_l == "ffffffff":
+                newval = "ff" + old_bg[2:]  # keep original bg case
+                stats["text_swapped"] += 1
+                transformed = True
+            elif val_l[:2] != "ff":
+                newval = "ff" + val[2:]
+                stats["text_opacified"] += 1
+                transformed = True
+        elif fname == "menuTextColor" and val_l[:2] != "ff":
+            newval = "ff" + val[2:]
+            stats["menu_opacified"] += 1
             transformed = True
         elif fname == "borderColor":
             if old_bg is not None and val_l == "ffffffff":
