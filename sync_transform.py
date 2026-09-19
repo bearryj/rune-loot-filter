@@ -15,7 +15,7 @@ out = []
 i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
-         "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0}
+         "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -74,6 +74,11 @@ def transform_block(header_idx, name, block_lines):
         stats["transformed"] += 1
     else:
         stats["untouched_no_bg"] += 1
+    if name.startswith("ALCHS_"):
+        # custom change: no high-alch coin icon
+        filtered = [l for l in new_lines if not re.match(r'^\s*icon\s*=\s*Sprite\(41,0\)', l)]
+        stats["icon_removed"] += len(new_lines) - len(filtered)
+        new_lines = filtered
     return new_lines
 
 while i < n:

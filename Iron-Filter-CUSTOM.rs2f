@@ -11515,7 +11515,6 @@ exampleItem: Dragon platelegs
 	showValue = true;\
 	menuSort = 50000;\
 	sound = "DropSS.wav";\
-	icon = Sprite(41,0);
 
 /*@ define:input:alchs
 label: S Tier
@@ -11536,7 +11535,6 @@ exampleItem: Dragon halberd
 	showValue = true;\
 	menuSort = 40000;\
 	sound = "DropS.wav";\
-	icon = Sprite(41,0);
 
 
 /*@ define:input:alchs
@@ -11556,7 +11554,6 @@ exampleItem: Dragon battleaxe
 	showValue = true;\
 	menuSort = 30000;\
 	sound = "DropA.wav";\
-	icon = Sprite(41,0);
 
 /*@ define:input:alchs
 label: B Tier
@@ -11572,7 +11569,6 @@ exampleItem: Mystic air battlestaff
 	textAccent = 3;\
 	menuSort = 20000;\
 	showValue = true;\
-	icon = Sprite(41,0);
 
 /*@ define:input:alchs
 label: C Tier
@@ -11588,7 +11584,6 @@ exampleItem: Adamant platebody
 	textAccent = 3;\
 	showValue = true;\
 	menuSort = 10000;\
-	icon = Sprite(41,0);
 
 
 /*@ define:input:alchs
@@ -11602,7 +11597,6 @@ exampleItem: Steel platebody
     color = "#ffffff70"; \
 	menuTextColor = "#ffffff70"; \
 	showValue = true;\
-	icon = Sprite(41,0);
 
 /*@ define:input:alchs
 label: E Tier
@@ -11617,7 +11611,6 @@ exampleItem: Bronze platebody
 	textAccentColor = "#66000000"; \
 	showValue = true;\
 	menuSort = -10000;\
-	icon = Sprite(41,0);
 	
 	
 rule (name:ALCHS_NAMES && !name:ALCHS_BAD_NAMES && havalue:>=ALCHS_MIN_VALUE && havalue:>=ALCHS_SS_VALUE) {ALCHS_SS_STYLE}
