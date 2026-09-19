@@ -15,6 +15,9 @@ EXEMPT = {
 ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "b3", "33": "99"}
 C_ALPHA = "99"  # force every C-tier block's ground text to 60% (upstream C text is a ff/33 mix)
 
+# User request: rune ground text at 100% opacity, all tiers (flatten rune alphas only; ladder stays for everything else).
+RUNES_OPAQUE = {"RUNES_A_STYLE", "RUNES_B_STYLE", "RUNES_C_STYLE", "RUNES_E_STYLE"}
+
 lines = open(SRC, encoding="utf-8", errors="replace").read().splitlines()
 
 out = []
@@ -22,7 +25,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0}
+         "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0, "rune_opaque": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -75,6 +78,10 @@ def transform_block(header_idx, name, block_lines):
             if name.endswith("_C_STYLE") and newval.lower()[:2] != C_ALPHA:
                 newval = C_ALPHA + newval[2:]
                 stats["text_stretched"] += 1
+                transformed = True
+            if name in RUNES_OPAQUE and newval.lower()[:2] != "ff":
+                newval = "ff" + newval[2:]
+                stats["rune_opaque"] += 1
                 transformed = True
         elif fname == "menuTextColor":
             a = val_l[:2]

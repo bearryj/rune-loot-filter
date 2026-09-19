@@ -17186,7 +17186,7 @@ exampleItem: Death rune
 */
 
 #define RUNES_A_STYLE \
-	color = "#e66a9190";\
+	color = "#ff6a9190";\
 	backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190"; \
 	fontType = 2;\
@@ -17258,7 +17258,7 @@ exampleItem: Chaos rune
 */
 
 #define RUNES_B_STYLE \
-	color = "#cc6a9190";\
+	color = "#ff6a9190";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
 	textAccent = 3;\
@@ -17335,7 +17335,7 @@ exampleItem: Cosmic rune
 */
 
 #define RUNES_C_STYLE \
-    color = "#996a9190";\
+    color = "#ff6a9190";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
 	textAccent = 3;\
@@ -17510,7 +17510,7 @@ exampleItem: Air rune
 */
 
 #define RUNES_E_STYLE \
-    color = "#b36a9190"; \
+    color = "#ff6a9190"; \
 	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff6a9190";\
 	menuSort = -10000;\
