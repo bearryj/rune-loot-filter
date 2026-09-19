@@ -9,6 +9,11 @@ EXEMPT = {
     "COX_PLANKS","COX_GOLPAR","COX_BUCHU","COX_NOXIFER",
 }
 
+# Custom: stretch the tier alpha ladder up so faint tiers stay readable.
+# Storn: ff(SS/S) cc(A) 99(B) 66(E) 33(C), 70 on fallback B.
+# New:   ff(SS/S) e6(A 90%) cc(B 80%) 99(E 60%) 66(C 40%).
+ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "99", "33": "66"}
+
 # Custom: rune text color matches the rune's in-game color.
 # name -> (hex6, SS-quant define of the rune's tier, menuSort or None)
 RUNE_COLORS = {
@@ -47,7 +52,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "rune_colors": 0, "meta_renamed": 0}
+         "rune_colors": 0, "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -87,10 +92,22 @@ def transform_block(header_idx, name, block_lines):
             newval = "00" + old_bg[2:]
             stats["bg_zeroed"] += 1
             transformed = True
-        if fname in ("textColor", "color") and old_bg is not None and val_l == "ffffffff":
-            newval = old_bg  # keep original bg case
-            stats["text_swapped"] += 1
-            transformed = True
+        if fname in ("textColor", "color"):
+            if old_bg is not None and val_l == "ffffffff":
+                newval = old_bg  # keep original bg case
+                stats["text_swapped"] += 1
+                transformed = True
+            a = newval.lower()[:2]
+            if a in ALPHA_STRETCH:
+                newval = ALPHA_STRETCH[a] + newval[2:]
+                stats["text_stretched"] += 1
+                transformed = True
+        elif fname == "menuTextColor":
+            a = val_l[:2]
+            if a in ALPHA_STRETCH:
+                newval = ALPHA_STRETCH[a] + val[2:]
+                stats["menu_stretched"] += 1
+                transformed = True
         elif fname == "borderColor":
             if old_bg is not None and val_l == "ffffffff":
                 newval = "00" + old_bg[2:]
