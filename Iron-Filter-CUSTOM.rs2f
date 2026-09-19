@@ -293,14 +293,14 @@ apply (_hidecondition && name:HIDE_USER_UNDER_10000 && quantity:<10000) {hidden 
 	textColor = "#cc00c8ff"; \
 	backgroundColor = "#0000c8ff"; \
 	menuTextColor = "#ff00c9ff"; \
-	textAccent = 2; \
+	textAccent = 3; \
 	menuSort = 20000; 
 
 #define UIM_FALLBACK_C_STYLE \
 	textColor = "#667bff1f"; \
 	backgroundColor = "#007bff1f"; \
 	menuTextColor = "#ff7bff1f"; \
-	textAccent = 2; \
+	textAccent = 3; \
 	menuSort = 10000; 
 
 #define UIM_FALLBACK_D_STYLE \
@@ -308,8 +308,7 @@ apply (_hidecondition && name:HIDE_USER_UNDER_10000 && quantity:<10000) {hidden 
 
 #define UIM_FALLBACK_E_STYLE \
 	textColor = "#99ffffff"; \
-	textAccent = 2; \
-	textAccentColor = "#ff000000";\
+	textAccentColor = "#66000000";\
 	menuSort = -10000; 
 
 rule (ENABLE_UIM_DEATH_PILES && ((area:[3238, 6066, 0, 3284, 6102, 0] || area:[2958, 3335, 0, 2983, 3355, 0] || area:[3088, 3468, 0, 3092, 3470, 0] || area:[3042, 3480, 1, 3062, 3501, 1] || area:[2672, 3305, 0, 2678, 3312, 0]  || area:[1794, 9479, 0, 1856, 9538, 0]  || area:[3206, 9600, 0, 3237, 9628, 0]) && value:>=UIM_FALLBACK_VALUE_SS)) {UIM_FALLBACK_SS_STYLE}
@@ -11029,9 +11028,8 @@ exampleItem: Coins
 
 #define COINS_E_STYLE \
     color = "#99ffff70"; \
-    textAccent = 2; \
 	menuTextColor = "#ffffff70"; \
-    textAccentColor = "#ff000000"; \
+    textAccentColor = "#66000000"; \
 	menuSort = -10000;
 
 
@@ -11217,7 +11215,7 @@ exampleItem: Tokkul
     color = "#99B1B1BB"; \
 	menuTextColor = "#ffB1B1BB"; \
     textAccent = 2;\
-    textAccentColor = "#ff000000";\
+    textAccentColor = "#66000000";\
 	menuSort = -10000;\
 
 rule (name:"Tokkul" && quantity:>=TOKKUL_MIN_QUANT && quantity:>=TOKKUL_SS_QUANT) {TOKKUL_SS_STYLE}
@@ -11400,9 +11398,8 @@ exampleItem: Numulite
 
 #define NUMALITE_E_STYLE \
     color = "#99AF9B76"; \
-    textAccent = 2; \
 	menuTextColor = "#ffAF9B76"; \
-    textAccentColor = "#ff8C7150";\
+    textAccentColor = "#668C7150";\
 	menuSort = -10000;\
 
 
@@ -11610,9 +11607,8 @@ exampleItem: Bronze platebody
 
 #define ALCHS_E_STYLE \
     color = "#99ffff70"; \
-    textAccent = 2; \
 	menuTextColor = "#ffffff70"; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	showValue = true;\
 	menuSort = -10000;\
 	
@@ -12176,8 +12172,7 @@ exampleItem: Ecumenical key shards
 
 #define KEYS_E_STYLE \
     color = "#99ea02ff"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff621075";\
 	menuSort = -10000;
 
@@ -12462,7 +12457,7 @@ exampleItem: Xeric's talisman (inert)
 	color = "#cc999999";\
     backgroundColor = "#00999999";\
 	menuTextColor = "#ff999999";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:teleports
@@ -12539,7 +12534,7 @@ exampleItem: Revenant cave teleport
     color = "#66999999";\
     backgroundColor = "#00999999";\
 	menuTextColor = "#ff999999";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;
 
 /*@ define:input:teleports
@@ -12712,8 +12707,7 @@ exampleItem: Bone fragments
 
 #define TELEPORTS_E_STYLE \
     color = "#99999999"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff999999"; \
 	menuSort = -10000;
 
@@ -13246,8 +13240,7 @@ exampleItem: Ancient essence
 
 #define CHARGES_E_STYLE \
     color = "#9900ffee"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff2fa79f";\
 	menuSort = -10000;\
 
@@ -13808,8 +13801,7 @@ exampleItem: Potato seed
 
 #define SEEDS_E_STYLE \
     color = "#9900e024"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff017300";\
 	menuSort = -10000;\
 
@@ -14854,8 +14846,7 @@ exampleItem: Grimy guam leaf
 
 #define HERBS_E_STYLE \
     color = "#9900e024"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff017300";\
 	menuSort = -10000;
 
@@ -15139,7 +15130,7 @@ exampleItem: Red spiders' eggs
 	color = "#cc62a1ff";\
     backgroundColor = "#0062a1ff";\
 	menuTextColor = "#ff62a1ff";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;\
 
 /*@ define:input:herblore_secondaries
@@ -15216,7 +15207,7 @@ exampleItem: Limpwurt root
     color = "#6662a1ff";\
     backgroundColor = "#0062a1ff";\
 	menuTextColor = "#ff62a1ff";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;
 
 /*@ define:input:herblore_secondaries
@@ -15389,8 +15380,7 @@ exampleItem: Swamp tar
 
 #define HERBLORE_SECONDARIES_E_STYLE \
     color = "#9962a1ff"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff62a1ff";\
 	menuSort = -10000;
 
@@ -15924,8 +15914,7 @@ exampleItem: Raw shrimps
 
 #define COOKING_E_STYLE \
     color = "#99c42533"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff4c0369";\
 	menuSort = -10000;
 
@@ -16209,7 +16198,7 @@ exampleItem: "Prayer potion(4)"
 	color = "#cc813f09";\
     backgroundColor = "#00813f09";\
 	menuTextColor = "#ff813f09";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:food_and_pots_stockpile
@@ -16286,7 +16275,7 @@ exampleItem: "Super combat potion(4)"
     color = "#66813f09";\
     backgroundColor = "#00813f09";\
 	menuTextColor = "#ff813f09";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:food_and_pots_stockpile
@@ -16459,8 +16448,7 @@ exampleItem: Attack potion(4)
 
 #define FOOD_AND_POTS_STOCKPILE_E_STYLE \
     color = "#99813f09"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff813f09";\
 	menuSort = -10000;\
 
@@ -16989,8 +16977,7 @@ exampleItem: Blighted karambwan
 
 #define BLIGHTED_FOOD_AND_POTS_STOCKPILE_E_STYLE \
     color = "#99683307"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff683307";\
 	menuSort = -10000;\
 
@@ -17274,7 +17261,7 @@ exampleItem: Chaos rune
 	color = "#cc6a9190";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:runes
@@ -17351,7 +17338,7 @@ exampleItem: Cosmic rune
     color = "#666a9190";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:runes
@@ -17524,8 +17511,7 @@ exampleItem: Air rune
 
 #define RUNES_E_STYLE \
     color = "#996a9190"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff6a9190";\
 	menuSort = -10000;\
 
@@ -18059,8 +18045,7 @@ exampleItem: Copper ore
 
 #define ORES_AND_BARS_E_STYLE \
     color = "#995E5E4C"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff5E5E4C";\
 	menuSort = -10000;\
 
@@ -18594,8 +18579,7 @@ exampleItem: Logs
 
 #define LOGS_E_STYLE \
     color = "#99AC8C53"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ffAC8C53";\
 	menuSort = -10000;\
 
@@ -19129,8 +19113,7 @@ exampleItem: Plank
 
 #define PLANKS_E_STYLE \
     color = "#99B18F54"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ffB18F54";\
 	menuSort = -10000;\
 
@@ -19664,8 +19647,7 @@ exampleItem: Leather
 
 #define CRAFTING_E_STYLE \
     color = "#99D8BD1A"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ffD8BD1A";\
 	menuSort = -10000;\
 
@@ -20217,8 +20199,7 @@ exampleItem: Bones
 
 #define PRAYER_BONES_E_STYLE \
     color = "#99fff759"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ffffffff";\
 	menuSort = -10000;
 
@@ -20505,7 +20486,7 @@ exampleItem: Abyssal ashes
 	color = "#cc6A3430";\
     backgroundColor = "#006A3430";\
 	menuTextColor = "#ff6A3430";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:prayer
@@ -20584,7 +20565,7 @@ exampleItem: Malicious ashes
     color = "#666A3430";\
     backgroundColor = "#006A3430";\
 	menuTextColor = "#ff6A3430";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:prayer
@@ -20761,8 +20742,7 @@ exampleItem: Fiendish ashes
 
 #define PRAYER_ASHES_E_STYLE \
     color = "#99ffffff"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff6A3430";\
 	menuSort = -10000;
 
@@ -21041,7 +21021,7 @@ exampleItem: Ensouled hellhound head
 	color = "#cc701da3";\
     backgroundColor = "#00701da3";\
 	menuTextColor = "#ff701da3";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:prayer
@@ -21118,7 +21098,7 @@ exampleItem: Ensouled dagannoth head
     color = "#66701da3";\
     backgroundColor = "#00701da3";\
 	menuTextColor = "#ff701da3";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:prayer
@@ -21291,8 +21271,7 @@ exampleItem: Ensouled goblin head
 
 #define PRAYER_HEADS_E_STYLE \
     color = "#99701da3"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff701da3";\
 	menuSort = -10000;
 
@@ -21826,8 +21805,7 @@ exampleItem: Headless arrow
 
 #define FLETCHING_E_STYLE \
     color = "#99094A4C"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff094A4C";\
 	menuSort = -10000;
 
@@ -22112,7 +22090,7 @@ exampleItem: Dragon pickaxe
 	color = "#cc870c12";\
     backgroundColor = "#00870c12";\
 	menuTextColor = "#ff870c12";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:dragon_gear
@@ -22189,7 +22167,7 @@ exampleItem: Dragon axe
     color = "#66870c12";\
     backgroundColor = "#00870c12";\
 	menuTextColor = "#ff870c12";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:dragon_gear
@@ -22362,8 +22340,7 @@ exampleItem: Dragon arrow
 
 #define DRAGON_GEAR_E_STYLE \
     color = "#99870c12"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff870c12";\
 	menuSort = -10000;\
 
@@ -22648,7 +22625,7 @@ exampleItem: Runite pickaxe
 	color = "#cc5B8796";\
     backgroundColor = "#005B8796";\
 	menuTextColor = "#ff5B8796";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:runite_gear
@@ -22725,7 +22702,7 @@ exampleItem: Runite axe
     color = "#665B8796";\
     backgroundColor = "#005B8796";\
 	menuTextColor = "#ff5B8796";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:runite_gear
@@ -22898,8 +22875,7 @@ exampleItem: Runite arrow
 
 #define RUNITE_GEAR_E_STYLE \
     color = "#995B8796"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff5B8796";\
 	menuSort = -10000;\
 
@@ -23184,7 +23160,7 @@ exampleItem: Adamantite pickaxe
 	color = "#cc506450";\
     backgroundColor = "#00506450";\
 	menuTextColor = "#ff506450";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:adamantite_gear
@@ -23261,7 +23237,7 @@ exampleItem: Adamantite axe
     color = "#66506450";\
     backgroundColor = "#00506450";\
 	menuTextColor = "#ff506450";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:adamantite_gear
@@ -23434,8 +23410,7 @@ exampleItem: Adamantite arrow
 
 #define ADAMANTITE_GEAR_E_STYLE \
     color = "#99506450"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff506450";\
 	menuSort = -10000;\
 
@@ -23720,7 +23695,7 @@ exampleItem: Mithril pickaxe
 	color = "#cc4c4c70";\
     backgroundColor = "#004c4c70";\
 	menuTextColor = "#ff4c4c70";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:mithril_gear
@@ -23797,7 +23772,7 @@ exampleItem: Mithril axe
     color = "#664c4c70";\
     backgroundColor = "#004c4c70";\
 	menuTextColor = "#ff4c4c70";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:mithril_gear
@@ -23970,8 +23945,7 @@ exampleItem: Mithril arrow
 
 #define MITHRIL_GEAR_E_STYLE \
     color = "#994c4c70"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff4c4c70";\
 	menuSort = -10000;\
 
@@ -24256,7 +24230,7 @@ exampleItem: Black pickaxe
 	color = "#cc000000";\
     backgroundColor = "#00000000";\
 	menuTextColor = "#ff000000";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:black_gear
@@ -24333,7 +24307,7 @@ exampleItem: Black axe
     color = "#66000000";\
     backgroundColor = "#00000000";\
 	menuTextColor = "#ff000000";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:black_gear
@@ -24505,8 +24479,7 @@ exampleItem: Black arrow
 
 #define BLACK_GEAR_E_STYLE \
     color = "#99000000"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff000000";\
 	menuSort = -10000;\
 
@@ -25041,8 +25014,7 @@ exampleItem: White arrow
 
 #define WHITE_GEAR_E_STYLE \
     color = "#99ffffff"; \
-    textAccent = 2; \
-	textAccentColor = "#ffffffff"; \
+	textAccentColor = "#66ffffff"; \
 	menuTextColor = "#ffffffff";\
 	menuSort = -10000;\
 
@@ -25327,7 +25299,7 @@ exampleItem: Steel pickaxe
 	color = "#cc908686";\
     backgroundColor = "#00908686";\
 	menuTextColor = "#ff908686";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:steel_gear
@@ -25404,7 +25376,7 @@ exampleItem: Steel axe
     color = "#66908686";\
     backgroundColor = "#00908686";\
 	menuTextColor = "#ff908686";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:steel_gear
@@ -25577,8 +25549,7 @@ exampleItem: Steel arrow
 
 #define STEEL_GEAR_E_STYLE \
     color = "#99908686"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff908686";\
 	menuSort = -10000;\
 
@@ -25863,7 +25834,7 @@ exampleItem: Iron pickaxe
 	color = "#cc391D14";\
     backgroundColor = "#00391D14";\
 	menuTextColor = "#ff391D14";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:iron_gear
@@ -25940,7 +25911,7 @@ exampleItem: Iron axe
     color = "#66391D14";\
     backgroundColor = "#00391D14";\
 	menuTextColor = "#ff391D14";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:iron_gear
@@ -26112,8 +26083,7 @@ exampleItem: Iron arrow
 
 #define IRON_GEAR_E_STYLE \
     color = "#99391D14"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff391D14";\
 	menuSort = -10000;\
 
@@ -26398,7 +26368,7 @@ exampleItem: Bronze pickaxe
 	color = "#cc5b462a";\
     backgroundColor = "#005b462a";\
 	menuTextColor = "#ff5b462a";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 20000;
 
 /*@ define:input:bronze_gear
@@ -26475,7 +26445,7 @@ exampleItem: Bronze axe
     color = "#665b462a";\
     backgroundColor = "#005b462a";\
 	menuTextColor = "#ff5b462a";\
-	textAccent = 2;\
+	textAccent = 3;\
 	menuSort = 10000;\
 
 /*@ define:input:bronze_gear
@@ -26648,8 +26618,7 @@ exampleItem: Bronze arrow
 
 #define BRONZE_GEAR_E_STYLE \
     color = "#995b462a"; \
-    textAccent = 2; \
-	textAccentColor = "#ff000000"; \
+	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff5b462a";\
 	menuSort = -10000;\
 
@@ -26907,7 +26876,7 @@ type: style
 	textColor = "#cc00c8ff"; \
 	backgroundColor = "#0000c8ff"; \
 	menuTextColor = "#ff00c9ff"; \
-	textAccent = 2; \
+	textAccent = 3; \
 	menuSort = 20000;
 
 /*@ define:input:fallback
@@ -26919,7 +26888,7 @@ type: style
 	textColor = "#667bff1f"; \
 	backgroundColor = "#007bff1f"; \
 	menuTextColor = "#ff7bff1f"; \
-	textAccent = 2; \
+	textAccent = 3; \
 	menuSort = 10000;
 	
 /*@ define:input:fallback
@@ -26937,8 +26906,7 @@ type: style
 
 #define FALLBACK_E_STYLE \
 	textColor = "#99ffffff"; \
-	textAccent = 2; \
-	textAccentColor = "#ff000000";\
+	textAccentColor = "#66000000";\
 	menuSort = -10000;
 
 rule (value:>=FALLBACK_VALUE_SS) {FALLBACK_SS_STYLE}
