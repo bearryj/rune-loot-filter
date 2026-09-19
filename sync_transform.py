@@ -10,9 +10,10 @@ EXEMPT = {
 }
 
 # Custom: stretch the tier alpha ladder up so faint tiers stay readable.
-# Storn: ff(SS/S) cc(A) 99(B) 66(E) 33(C), 70 on fallback B.
-# New:   ff(SS/S) e6(A 90%) cc(B 80%) 99(E 60%) 66(C 40%).
-ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "99", "33": "66"}
+# Storn: ff(SS/S) cc(A) 99(B) 66(E); C faintness lives in bg alpha 33/44 + white text.
+# New:   ff(SS/S) e6(A 90%) cc(B 80%) b3(E 70%) 99(C 60%).
+ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "b3", "33": "99"}
+C_ALPHA = "99"  # force every C-tier block's ground text to 60% (upstream C text is a ff/33 mix)
 
 lines = open(SRC, encoding="utf-8", errors="replace").read().splitlines()
 
@@ -69,6 +70,10 @@ def transform_block(header_idx, name, block_lines):
             a = newval.lower()[:2]
             if a in ALPHA_STRETCH:
                 newval = ALPHA_STRETCH[a] + newval[2:]
+                stats["text_stretched"] += 1
+                transformed = True
+            if name.endswith("_C_STYLE") and newval.lower()[:2] != C_ALPHA:
+                newval = C_ALPHA + newval[2:]
                 stats["text_stretched"] += 1
                 transformed = True
         elif fname == "menuTextColor":
