@@ -17062,7 +17062,7 @@ exampleItem: Wrath rune
 #define RUNES_SS_STYLE \
 	backgroundColor = "#00ffffff";\
 	menuTextColor = "#ff6a9190";\
-	color = "#ff6a9190";\
+	color = "#ffffffff";\
 	fontType = 3;\
 	textAccent = 3;\
 	borderColor = "#006a9190";\
@@ -17121,7 +17121,7 @@ exampleItem: Blood rune
 #define RUNES_S_STYLE \
 	backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
-	color = "#ff6a9190";\
+	color = "#ffffffff";\
 	fontType = 3;\
 	textAccent = 3;\
 	borderColor = "#006a9190";\
@@ -17186,7 +17186,7 @@ exampleItem: Death rune
 */
 
 #define RUNES_A_STYLE \
-	color = "#ff6a9190";\
+	color = "#ffffffff";\
 	backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190"; \
 	fontType = 2;\
@@ -17258,7 +17258,7 @@ exampleItem: Chaos rune
 */
 
 #define RUNES_B_STYLE \
-	color = "#ff6a9190";\
+	color = "#ffffffff";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
 	textAccent = 3;\
@@ -17335,7 +17335,7 @@ exampleItem: Cosmic rune
 */
 
 #define RUNES_C_STYLE \
-    color = "#ff6a9190";\
+    color = "#ffffffff";\
     backgroundColor = "#006a9190";\
 	menuTextColor = "#ff6a9190";\
 	textAccent = 3;\
@@ -17420,7 +17420,7 @@ exampleItem: Mind rune
 */
 
 #define RUNES_D_STYLE \
-    color = "#ff6a9190"; \
+    color = "#ffffffff"; \
 	menuTextColor = "#ff6a9190";
 
 /*@ define:input:runes
@@ -17510,7 +17510,7 @@ exampleItem: Air rune
 */
 
 #define RUNES_E_STYLE \
-    color = "#ff6a9190"; \
+    color = "#ffffffff"; \
 	textAccentColor = "#66000000"; \
 	menuTextColor = "#ff6a9190";\
 	menuSort = -10000;\

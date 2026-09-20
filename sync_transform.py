@@ -16,7 +16,8 @@ ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "b3", "33": "99"}
 C_ALPHA = "99"  # force every C-tier block's ground text to 60% (upstream C text is a ff/33 mix)
 
 # User request: rune ground text at 100% opacity, all tiers (flatten rune alphas only; ladder stays for everything else).
-RUNES_OPAQUE = {"RUNES_A_STYLE", "RUNES_B_STYLE", "RUNES_C_STYLE", "RUNES_E_STYLE"}
+RUNES_OPAQUE = {"RUNES_SS_STYLE", "RUNES_S_STYLE", "RUNES_A_STYLE", "RUNES_B_STYLE", "RUNES_C_STYLE", "RUNES_D_STYLE", "RUNES_E_STYLE"}
+RUNES_GROUND_COLOR = "ffffffff"
 
 lines = open(SRC, encoding="utf-8", errors="replace").read().splitlines()
 
@@ -79,8 +80,8 @@ def transform_block(header_idx, name, block_lines):
                 newval = C_ALPHA + newval[2:]
                 stats["text_stretched"] += 1
                 transformed = True
-            if name in RUNES_OPAQUE and newval.lower()[:2] != "ff":
-                newval = "ff" + newval[2:]
+            if name in RUNES_OPAQUE and newval.lower() != RUNES_GROUND_COLOR:
+                newval = RUNES_GROUND_COLOR
                 stats["rune_opaque"] += 1
                 transformed = True
         elif fname == "menuTextColor":
