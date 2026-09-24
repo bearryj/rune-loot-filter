@@ -26,7 +26,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "meta_renamed": 0, "text_stretched": 0, "menu_stretched": 0, "rune_opaque": 0}
+         "meta_renamed": 0, "global_drops_hidden": 0, "text_stretched": 0, "menu_stretched": 0, "rune_opaque": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
 
@@ -138,7 +138,18 @@ def preserve_meta_name(out):
     print("WARNING: meta name line not found")
     return out
 
+def preserve_user_settings(out):
+    """Keep user-selected global-drop behavior through regeneration."""
+    for j, l in enumerate(out):
+        m = re.match(r'^(\s*#define SHOW_GLOBAL_DROPS\s+)(true|false)(\s*)$', l)
+        if m and m.group(2) != "false":
+            out[j] = f'{m.group(1)}false{m.group(3)}'
+            stats["global_drops_hidden"] = 1
+            return out
+    return out
+
 out = preserve_meta_name(out)
+out = preserve_user_settings(out)
 
 open(DST, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
 print("stats:", stats)
