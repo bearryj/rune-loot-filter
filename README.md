@@ -11,7 +11,6 @@ Custom OSRS loot filter based on [Storn's Iron-Filter](https://github.com/Storn4
 ## Files
 
 - `Iron-Filter-CUSTOM.rs2f` — current custom filter, tracking Storn's latest release
-- `Storn_s_Iron_Filter__1_CUSTOM.rs2f` — previous custom filter (superseded)
 - `sync_transform.py` — regenerates the custom filter from a new upstream release
 
 ## Install
