@@ -21041,6 +21041,7 @@ group: Ensouled Heads C Tier
 
 #define PRAYER_HEADS_C_SHOW_UNNOTED false
 
+rule (name:"Ensouled bloodveld head") {PRAYER_HEADS_C_STYLE}
 rule (name:PRAYER_HEADS_C_NAMES && !PRAYER_HEADS_C_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:PRAYER_HEADS_C_NAMES && !PRAYER_HEADS_C_SHOW_UNNOTED && stackable:false) {hidden = true;}
 
