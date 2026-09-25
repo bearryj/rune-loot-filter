@@ -21643,7 +21643,7 @@ enum: ["Dragon crossbow (u)","Dragon limbs","Runite crossbow (u)","Runite limbs"
 group: D Tier
 */
 
-#define FLETCHING_D_NAMES ["bowstring","Maple longbow (u)","Maple shortbow (u)","Yew longbow (u)","Yew shortbow (u)","Unstrung comp bow","Maple stock","Mithril crossbow (u)","Yew stock","Mahogany stock","Mithril limbs","Rune arrowtips","Amethyst arrowtips","Adamant bolts(unf)","Runite bolts (unf)","Ruby bolt tips","Diamond bolt tips","Dragonstone bolt tips","Amethyst bolt tips","Headless atlatl dart","Atlatl dart tips","Adamant dart tip","Rune dart tip","Amethyst dart tip","Adamant javelin tips","Rune javelin tips","Amethyst javelin tips","Dragon javelin tips"]
+#define FLETCHING_D_NAMES ["Bow string","Maple longbow (u)","Maple shortbow (u)","Yew longbow (u)","Yew shortbow (u)","Unstrung comp bow","Maple stock","Mithril crossbow (u)","Yew stock","Mahogany stock","Mithril limbs","Rune arrowtips","Amethyst arrowtips","Adamant bolts(unf)","Runite bolts (unf)","Ruby bolt tips","Diamond bolt tips","Dragonstone bolt tips","Amethyst bolt tips","Headless atlatl dart","Atlatl dart tips","Adamant dart tip","Rune dart tip","Amethyst dart tip","Adamant javelin tips","Rune javelin tips","Amethyst javelin tips","Dragon javelin tips"]
 
 /*@ define:input:fletching
 label: Show Unnoted

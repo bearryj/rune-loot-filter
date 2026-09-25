@@ -26,7 +26,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "meta_renamed": 0, "global_drops_hidden": 0, "bloodveld_head_shown": 0,
+         "meta_renamed": 0, "global_drops_hidden": 0, "bloodveld_head_shown": 0, "bow_string_name_fixed": 0,
          "text_stretched": 0, "menu_stretched": 0, "rune_opaque": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
@@ -163,9 +163,20 @@ def preserve_bloodveld_head_show(out):
     print("WARNING: PRAYER_HEADS_C hide anchor not found; bloodveld head show rule not inserted")
     return out
 
+def preserve_item_name_corrections(out):
+    """Keep the OSRS item spelling used by RuneLite in the fletching list."""
+    for j, l in enumerate(out):
+        if l.startswith("#define FLETCHING_D_NAMES ") and '"bowstring"' in l:
+            out[j] = l.replace('"bowstring"', '"Bow string"', 1)
+            stats["bow_string_name_fixed"] = 1
+            return out
+    print("WARNING: FLETCHING_D_NAMES item-name anchor not found; Bow string correction not applied")
+    return out
+
 out = preserve_meta_name(out)
 out = preserve_user_settings(out)
 out = preserve_bloodveld_head_show(out)
+out = preserve_item_name_corrections(out)
 
 open(DST, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
 print("stats:", stats)
