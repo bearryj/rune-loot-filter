@@ -195,7 +195,7 @@ def hide_normal_bones(lines: list[str]) -> None:
     if len(macro_indices) != 1:
         raise ValueError(f"expected one B2P_BONES_LIST definition, found {len(macro_indices)}")
 
-    rule = 'rule (name:"Bones" && !((B2P_BONES_LIST))) {hidden = true;}'
+    rule = 'rule (name:"Bones") {hidden = true;}'
     existing = [i for i, line in enumerate(lines) if line.strip() == rule]
     if len(existing) > 1:
         raise ValueError("duplicate normal-Bones hide rules")
