@@ -190,17 +190,26 @@ def hide_normal_bones(lines: list[str]) -> None:
     if "Bones" not in bone_names:
         raise ValueError("normal Bones is no longer in the E-tier bone list")
 
-    macro_marker = "#define B2P_BONES_LIST "
-    macro_indices = [i for i, line in enumerate(lines) if line.startswith(macro_marker)]
-    if len(macro_indices) != 1:
-        raise ValueError(f"expected one B2P_BONES_LIST definition, found {len(macro_indices)}")
-
     rule = 'rule (name:"Bones") {hidden = true;}'
     existing = [i for i, line in enumerate(lines) if line.strip() == rule]
     if len(existing) > 1:
         raise ValueError("duplicate normal-Bones hide rules")
-    if not existing:
-        lines.insert(macro_indices[0] + 1, rule)
+
+    try:
+        meta_start = next(i for i, line in enumerate(lines) if line.strip() == "meta {")
+        meta_end = next(i for i in range(meta_start + 1, len(lines)) if lines[i].strip() == "}")
+    except StopIteration as exc:
+        raise ValueError("could not locate the meta block for the Bones hide rule") from exc
+    insert_at = meta_end + 1
+
+    if existing:
+        existing_at = existing[0]
+        if existing_at == insert_at:
+            return
+        lines.pop(existing_at)
+        if existing_at < insert_at:
+            insert_at -= 1
+    lines.insert(insert_at, rule)
 
 
 def transform(source: Path, destination: Path) -> None:
