@@ -13968,7 +13968,7 @@ type: number
 group: D Tier
 */
 
-#define SEEDS_D_MIN_QUANT 10
+#define SEEDS_D_MIN_QUANT 1
 
 rule (name:SEEDS_D_NAMES && quantity:<SEEDS_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:SEEDS_D_NAMES && quantity:<SEEDS_D_MIN_QUANT) {hidden = true;}
@@ -15538,8 +15538,8 @@ group: D Tier
 
 #define HERBLORE_SECONDARIES_D_SHOW_UNNOTED false
 
-rule (name:HERBLORE_SECONDARIES_D_NAMES && !HERBLORE_SECONDARIES_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
-rule (name:HERBLORE_SECONDARIES_D_NAMES && !HERBLORE_SECONDARIES_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
+rule (name:HERBLORE_SECONDARIES_D_NAMES && !HERBLORE_SECONDARIES_D_SHOW_UNNOTED && stackable:false && !name:"Limpwurt root" && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
+rule (name:HERBLORE_SECONDARIES_D_NAMES && !HERBLORE_SECONDARIES_D_SHOW_UNNOTED && stackable:false && !name:"Limpwurt root") {hidden = true;}
 
 /*@ define:input:herblore_secondaries
 label: Minimum Quantity
@@ -17678,7 +17678,7 @@ type: number
 group: D Tier
 */
 
-#define RUNES_D_MIN_QUANT 5
+#define RUNES_D_MIN_QUANT 1
 
 rule (name:RUNES_D_NAMES && quantity:<RUNES_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:RUNES_D_NAMES && quantity:<RUNES_D_MIN_QUANT) {hidden = true;}
@@ -19269,7 +19269,7 @@ type: boolean
 group: D Tier
 */
 
-#define PLANKS_D_SHOW_UNNOTED false
+#define PLANKS_D_SHOW_UNNOTED true
 
 rule (name:PLANKS_D_NAMES && !PLANKS_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:PLANKS_D_NAMES && !PLANKS_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -19280,7 +19280,7 @@ type: number
 group: D Tier
 */
 
-#define PLANKS_D_MIN_QUANT 10
+#define PLANKS_D_MIN_QUANT 1
 
 rule (name:PLANKS_D_NAMES && quantity:<PLANKS_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:PLANKS_D_NAMES && quantity:<PLANKS_D_MIN_QUANT) {hidden = true;}
@@ -21962,7 +21962,7 @@ type: boolean
 group: D Tier
 */
 
-#define FLETCHING_D_SHOW_UNNOTED false
+#define FLETCHING_D_SHOW_UNNOTED true
 
 rule (name:FLETCHING_D_NAMES && !FLETCHING_D_SHOW_UNNOTED && noted:true && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:FLETCHING_D_NAMES && !FLETCHING_D_SHOW_UNNOTED && noted:true) {hidden = true;}
@@ -21973,7 +21973,7 @@ type: number
 group: D Tier
 */
 
-#define FLETCHING_D_MIN_QUANT 10
+#define FLETCHING_D_MIN_QUANT 1
 
 rule (name:FLETCHING_D_NAMES && quantity:<FLETCHING_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:FLETCHING_D_NAMES && quantity:<FLETCHING_D_MIN_QUANT) {hidden = true;}
@@ -23567,7 +23567,7 @@ type: boolean
 group: D Tier
 */
 
-#define ADAMANTITE_GEAR_D_SHOW_UNNOTED false
+#define ADAMANTITE_GEAR_D_SHOW_UNNOTED true
 
 rule (name:ADAMANTITE_GEAR_D_NAMES && !ADAMANTITE_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:ADAMANTITE_GEAR_D_NAMES && !ADAMANTITE_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -24102,7 +24102,7 @@ type: boolean
 group: D Tier
 */
 
-#define MITHRIL_GEAR_D_SHOW_UNNOTED false
+#define MITHRIL_GEAR_D_SHOW_UNNOTED true
 
 rule (name:MITHRIL_GEAR_D_NAMES && !MITHRIL_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:MITHRIL_GEAR_D_NAMES && !MITHRIL_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -24637,7 +24637,7 @@ type: boolean
 group: D Tier
 */
 
-#define BLACK_GEAR_D_SHOW_UNNOTED false
+#define BLACK_GEAR_D_SHOW_UNNOTED true
 rule (name:BLACK_GEAR_D_NAMES && !BLACK_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:BLACK_GEAR_D_NAMES && !BLACK_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
 
@@ -24647,7 +24647,7 @@ type: number
 group: D Tier
 */
 
-#define BLACK_GEAR_D_MIN_QUANT 10
+#define BLACK_GEAR_D_MIN_QUANT 1
 
 rule (name:BLACK_GEAR_D_NAMES && quantity:<BLACK_GEAR_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:BLACK_GEAR_D_NAMES && quantity:<BLACK_GEAR_D_MIN_QUANT) {hidden = true;}
@@ -25706,7 +25706,7 @@ type: boolean
 group: D Tier
 */
 
-#define STEEL_GEAR_D_SHOW_UNNOTED false
+#define STEEL_GEAR_D_SHOW_UNNOTED true
 
 rule (name:STEEL_GEAR_D_NAMES && !STEEL_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:STEEL_GEAR_D_NAMES && !STEEL_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -25717,7 +25717,7 @@ type: number
 group: D Tier
 */
 
-#define STEEL_GEAR_D_MIN_QUANT 10
+#define STEEL_GEAR_D_MIN_QUANT 1
 
 rule (name:STEEL_GEAR_D_NAMES && quantity:<STEEL_GEAR_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:STEEL_GEAR_D_NAMES && quantity:<STEEL_GEAR_D_MIN_QUANT) {hidden = true;}
@@ -26241,7 +26241,7 @@ type: boolean
 group: D Tier
 */
 
-#define IRON_GEAR_D_SHOW_UNNOTED false
+#define IRON_GEAR_D_SHOW_UNNOTED true
 
 rule (name:IRON_GEAR_D_NAMES && !IRON_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:IRON_GEAR_D_NAMES && !IRON_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -26775,7 +26775,7 @@ type: boolean
 group: D Tier
 */
 
-#define BRONZE_GEAR_D_SHOW_UNNOTED false
+#define BRONZE_GEAR_D_SHOW_UNNOTED true
 
 rule (name:BRONZE_GEAR_D_NAMES && !BRONZE_GEAR_D_SHOW_UNNOTED && stackable:false && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:BRONZE_GEAR_D_NAMES && !BRONZE_GEAR_D_SHOW_UNNOTED && stackable:false) {hidden = true;}
@@ -26786,7 +26786,7 @@ type: number
 group: D Tier
 */
 
-#define BRONZE_GEAR_D_MIN_QUANT 10
+#define BRONZE_GEAR_D_MIN_QUANT 1
 
 rule (name:BRONZE_GEAR_D_NAMES && quantity:<BRONZE_GEAR_D_MIN_QUANT && (PERFECT_KILL_LISTS)))) {hideOverlay = true;}
 rule (name:BRONZE_GEAR_D_NAMES && quantity:<BRONZE_GEAR_D_MIN_QUANT) {hidden = true;}

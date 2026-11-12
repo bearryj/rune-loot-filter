@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Generate a fresh-account variant from the current custom OSRS loot filter.
 
-The variant keeps the Ironman rules and custom styling, but relaxes selected
-E-tier quantity and unnoted-item gates for early-game gear and supplies.
+The variant keeps the Ironman rules and styling, relaxes useful early-game E- and
+selected D-tier gates, and preserves higher-tier clutter filters.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import re
 from pathlib import Path
 
@@ -32,6 +33,13 @@ MIN_QUANTITIES = {
     "STEEL_GEAR_E_MIN_QUANT": "1",
     "IRON_GEAR_E_MIN_QUANT": "1",
     "BRONZE_GEAR_E_MIN_QUANT": "1",
+    "BLACK_GEAR_D_MIN_QUANT": "1",
+    "BRONZE_GEAR_D_MIN_QUANT": "1",
+    "STEEL_GEAR_D_MIN_QUANT": "1",
+    "FLETCHING_D_MIN_QUANT": "1",
+    "PLANKS_D_MIN_QUANT": "1",
+    "RUNES_D_MIN_QUANT": "1",
+    "SEEDS_D_MIN_QUANT": "1",
 }
 
 SHOW_UNNOTED = {
@@ -51,6 +59,27 @@ SHOW_UNNOTED = {
     "STEEL_GEAR_E_SHOW_UNNOTED",
     "IRON_GEAR_E_SHOW_UNNOTED",
     "BRONZE_GEAR_E_SHOW_UNNOTED",
+    "ADAMANTITE_GEAR_D_SHOW_UNNOTED",
+    "BLACK_GEAR_D_SHOW_UNNOTED",
+    "BRONZE_GEAR_D_SHOW_UNNOTED",
+    "FLETCHING_D_SHOW_UNNOTED",
+    "IRON_GEAR_D_SHOW_UNNOTED",
+    "MITHRIL_GEAR_D_SHOW_UNNOTED",
+    "PLANKS_D_SHOW_UNNOTED",
+    "RUNES_D_SHOW_UNNOTED",
+    "SEEDS_D_SHOW_UNNOTED",
+    "STEEL_GEAR_D_SHOW_UNNOTED",
+}
+
+# These are useful early-account unnoted drops assigned to a higher upstream
+# tier. Exclude only these names from that tier's hide gate; their original tier
+# style remains in effect and unrelated D-tier clutter stays hidden.
+UNNOTED_EXCEPTIONS = {
+    "HERBLORE_SECONDARIES_D": {"Limpwurt root"},
+}
+
+INTENTIONALLY_HIDDEN_E_SHOW_UNNOTED = {
+    "BLIGHTED_FOOD_AND_POTS_STOCKPILE_E_SHOW_UNNOTED",
 }
 
 META_NAME = "BearryJ's Iron Filter - Fresh Account"
@@ -97,8 +126,62 @@ def set_define(lines: list[str], name: str, value: str) -> None:
     lines[index] = f"{match.group(1)}{value}{match.group(3)}"
 
 
+def validate_e_tier_coverage(lines: list[str]) -> None:
+    definitions: dict[str, str] = {}
+    for line in lines:
+        parts = line.split(None, 2)
+        if len(parts) == 3 and parts[0] == "#define":
+            definitions[parts[1]] = parts[2]
+
+    missing_quantities = []
+    missing_unnoted = []
+    for name, value in definitions.items():
+        if name.endswith("_E_MIN_QUANT"):
+            try:
+                threshold = int(value)
+            except ValueError:
+                continue
+            if threshold > 1 and name not in MIN_QUANTITIES:
+                missing_quantities.append(name)
+        elif name.endswith("_E_SHOW_UNNOTED") and value.lower() == "false":
+            if name not in SHOW_UNNOTED and name not in INTENTIONALLY_HIDDEN_E_SHOW_UNNOTED:
+                missing_unnoted.append(name)
+
+    if missing_quantities or missing_unnoted:
+        raise ValueError(
+            "unreviewed E-tier settings: "
+            f"minimum quantities={sorted(missing_quantities)}, "
+            f"unnoted gates={sorted(missing_unnoted)}"
+        )
+
+
+def apply_unnoted_exceptions(lines: list[str]) -> None:
+    for group, items in UNNOTED_EXCEPTIONS.items():
+        names_define = f"{group}_NAMES"
+        names_line = next((line for line in lines if line.startswith(f"#define {names_define} ")), None)
+        if names_line is None:
+            raise ValueError(f"missing #define {names_define}")
+        try:
+            names = json.loads(names_line.split(None, 2)[2])
+        except (IndexError, json.JSONDecodeError) as exc:
+            raise ValueError(f"could not parse {names_define}") from exc
+        if not items.issubset(set(names)):
+            raise ValueError(f"fresh-account exception missing from {names_define}: {sorted(items - set(names))}")
+
+        marker = f"name:{names_define} && !{group}_SHOW_UNNOTED && stackable:false"
+        matching_rules = [i for i, line in enumerate(lines) if marker in line]
+        if len(matching_rules) != 2:
+            raise ValueError(f"expected two unnoted hide rules for {group}, found {len(matching_rules)}")
+
+        exclusion = "".join(f' && !name:"{item}"' for item in sorted(items))
+        for index in matching_rules:
+            if exclusion not in lines[index]:
+                lines[index] = lines[index].replace(marker, marker + exclusion, 1)
+
+
 def transform(source: Path, destination: Path) -> None:
     lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
+    validate_e_tier_coverage(lines)
     try:
         meta_start = next(i for i, line in enumerate(lines) if line.strip() == "meta {")
         meta_end = next(i for i in range(meta_start + 1, len(lines)) if lines[i].strip() == "}")
@@ -113,6 +196,7 @@ def transform(source: Path, destination: Path) -> None:
         set_define(lines, name, value)
     for name in SHOW_UNNOTED:
         set_define(lines, name, "true")
+    apply_unnoted_exceptions(lines)
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
