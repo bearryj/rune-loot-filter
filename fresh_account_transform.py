@@ -179,6 +179,30 @@ def apply_unnoted_exceptions(lines: list[str]) -> None:
                 lines[index] = lines[index].replace(marker, marker + exclusion, 1)
 
 
+def hide_normal_bones(lines: list[str]) -> None:
+    names_line = next((line for line in lines if line.startswith("#define PRAYER_BONES_E_NAMES ")), None)
+    if names_line is None:
+        raise ValueError("missing PRAYER_BONES_E_NAMES")
+    try:
+        bone_names = json.loads(names_line.split(None, 2)[2])
+    except (IndexError, json.JSONDecodeError) as exc:
+        raise ValueError("could not parse PRAYER_BONES_E_NAMES") from exc
+    if "Bones" not in bone_names:
+        raise ValueError("normal Bones is no longer in the E-tier bone list")
+
+    macro_marker = "#define B2P_BONES_LIST "
+    macro_indices = [i for i, line in enumerate(lines) if line.startswith(macro_marker)]
+    if len(macro_indices) != 1:
+        raise ValueError(f"expected one B2P_BONES_LIST definition, found {len(macro_indices)}")
+
+    rule = 'rule (name:"Bones" && !((B2P_BONES_LIST))) {hidden = true;}'
+    existing = [i for i, line in enumerate(lines) if line.strip() == rule]
+    if len(existing) > 1:
+        raise ValueError("duplicate normal-Bones hide rules")
+    if not existing:
+        lines.insert(macro_indices[0] + 1, rule)
+
+
 def transform(source: Path, destination: Path) -> None:
     lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
     validate_e_tier_coverage(lines)
@@ -197,6 +221,7 @@ def transform(source: Path, destination: Path) -> None:
     for name in SHOW_UNNOTED:
         set_define(lines, name, "true")
     apply_unnoted_exceptions(lines)
+    hide_normal_bones(lines)
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

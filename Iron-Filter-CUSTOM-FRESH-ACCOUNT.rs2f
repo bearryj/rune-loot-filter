@@ -20005,6 +20005,7 @@ subtitle: Future Gifts to PKers
 #define MVP_BONES_LIST area:[3336,10306,0,3383,10349,0] && name:"Big Bones" && ENABLE_CALLISTO_AND_ARTIO_MVP && ownership:1) || (area:[1739,11522,0,1782,11566,0] && name:"Big Bones" && ENABLE_CALLISTO_AND_ARTIO_MVP && ownership:1) || (area:[1501,3268,0,1538,3298,0] && name:"Big Bones" && ENABLE_HUEYCOATL_MVP && ownership:1) || (area:[1501,3268,0,1538,3298,0] && name:"Big Bones" && ENABLE_NEX_MVP && ownership:1) || (area:[3830,9910,3,3914,9988,3] && name:"Big Bones" && ENABLE_NIGHTMARE_MVP && ownership:1) || (area:[3403,10183,2,3443,10225,2] && name:"Big Bones" && ENABLE_VENENATIS_AND_SPINDEL_MVP && ownership:1) || (area:[1608,11527,2,1652,11569,2] && name:"Big Bones" && ENABLE_VENENATIS_AND_SPINDEL_MVP && ownership:1) || (area:[3283,10190,1,3307,10216,1] && name:"Big Bones" && ENABLE_VETION_AND_CALVARION_MVP && ownership:1) || (area:[1877,11533,1,1898,11560,1] && name:"Big Bones" && ENABLE_VETION_AND_CALVARION_MVP && ownership:1
 
 #define B2P_BONES_LIST area:[2820,5295,2,2844,5310,2] && name:["Bones", "Big bones"] && ENABLE_KREEARRA_PEACHES) || (area:[2863,5350,2,2878,5374,2] && name:["Bones", "Big Bones"] && ENABLE_GENERAL_GRAARDOR_PEACHES) || (area:[2884,5255,0,2909,5278,0] && name:"Bones" && ENABLE_COMMANDER_ZILYANA_PEACHES
+rule (name:"Bones" && !((B2P_BONES_LIST))) {hidden = true;}
 
 /*@ define:input:prayer
 label: SS Tier Bones

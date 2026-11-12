@@ -12,7 +12,7 @@ Custom OSRS Ironman loot-filter presets maintained by BearryJ, derived from the 
 ## Files
 
 - `Iron-Filter-CUSTOM.rs2f` — BearryJ's standard Ironman filter
-- `Iron-Filter-CUSTOM-FRESH-ACCOUNT.rs2f` — BearryJ's fresh-account variant; opens single-count D-tier gear, runes, seeds, bow strings, planks, and unnoted Limpwurt roots alongside the relaxed E-tier supplies
+- `Iron-Filter-CUSTOM-FRESH-ACCOUNT.rs2f` — BearryJ's fresh-account variant; opens single-count D-tier gear, runes, seeds, bow strings, planks, and unnoted Limpwurt roots alongside the relaxed E-tier supplies, while keeping ordinary `Bones` hidden outside the existing Bones-to-Peaches exceptions
 - `sync_transform.py` — regenerates the standard filter from upstream and applies BearryJ branding
 - `fresh_account_transform.py` — derives the fresh-account variant; the scheduled sync regenerates both files
 
