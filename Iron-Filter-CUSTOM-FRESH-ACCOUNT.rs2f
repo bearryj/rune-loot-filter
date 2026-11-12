@@ -4,12 +4,12 @@ name: header
 */
 
 meta {
-    name = "Iron Filter Custom - Fresh Account";
-    description = "Ironman-focused fresh-account preset: shows low-quantity and unnoted early-game gear, food, runes, and resources.";
+    name = "BearryJ's Iron Filter - Fresh Account";
+    description = "BearryJ's Ironman fresh-account preset: shows low-quantity and unnoted early-game gear, food, runes, and resources.";
 	}
 
 /*@ define:module:greetings
-name: Welcome to Storn's Iron Filter
+name: Welcome to BearryJ's Iron Filter - Fresh Account
 description:
     This is filter made for Ironman players. Sit back, relax, and turn off item value. Items are organized into different tiers base on value to ironman, rather than GE price. 
 */

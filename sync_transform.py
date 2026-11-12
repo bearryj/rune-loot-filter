@@ -10,7 +10,7 @@ EXEMPT = {
 }
 
 # Custom: stretch the tier alpha ladder up so faint tiers stay readable.
-# Storn: ff(SS/S) cc(A) 99(B) 66(E); C faintness lives in bg alpha 33/44 + white text.
+# Upstream tier alpha: ff(SS/S) cc(A) 99(B) 66(E); C faintness lives in bg alpha 33/44 + white text.
 # New:   ff(SS/S) e6(A 90%) cc(B 80%) b3(E 70%) 99(C 60%).
 ALPHA_STRETCH = {"cc": "e6", "99": "cc", "70": "cc", "66": "b3", "33": "99"}
 C_ALPHA = "99"  # force every C-tier block's ground text to 60% (upstream C text is a ff/33 mix)
@@ -26,7 +26,7 @@ i = 0
 n = len(lines)
 stats = {"blocks": 0, "style_blocks": 0, "exempt": 0, "transformed": 0, "bg_zeroed": 0,
          "text_swapped": 0, "border_zeroed": 0, "no_bg_border": 0, "untouched_no_bg": 0, "icon_removed": 0,
-         "meta_renamed": 0, "global_drops_hidden": 0, "bloodveld_head_shown": 0, "bow_string_name_fixed": 0,
+         "meta_renamed": 0, "greeting_renamed": 0, "global_drops_hidden": 0, "bloodveld_head_shown": 0, "bow_string_name_fixed": 0,
          "text_stretched": 0, "menu_stretched": 0, "rune_opaque": 0}
 
 field_pat = re.compile(r'^([ \t]*)(\w+)\s*=\s*"#([0-9a-fA-F]{8})"(\s*;.*)$')
@@ -129,14 +129,39 @@ while i < n:
         out.append(line)
     i += 1
 
-def preserve_meta_name(out):
-    """Keep the user's manual rename through regeneration."""
-    for j, l in enumerate(out):
-        if l.strip() == 'name = "Storn\'s Iron Filter";':
-            out[j] = l.replace("Storn's Iron Filter", "Iron Filter Custom")
+def preserve_filter_brand(out):
+    """Apply the BearryJ filter name after every upstream regeneration."""
+    meta_start = next((i for i, line in enumerate(out) if line.strip() == "meta {"), None)
+    if meta_start is None:
+        print("WARNING: meta block not found")
+        return out
+    meta_end = next((i for i in range(meta_start + 1, len(out)) if out[i].strip() == "}"), None)
+    if meta_end is None:
+        print("WARNING: meta block end not found")
+        return out
+
+    for j in range(meta_start + 1, meta_end):
+        name_match = re.match(r'^(\s*name\s*=\s*)"[^"]*"(;\s*)$', out[j])
+        if name_match:
+            out[j] = f'{name_match.group(1)}"BearryJ\'s Iron Filter"{name_match.group(2)}'
             stats["meta_renamed"] = 1
-            return out
-    print("WARNING: meta name line not found")
+        description_match = re.match(r'^(\s*description\s*=\s*)"[^"]*"(;\s*)$', out[j])
+        if description_match:
+            out[j] = f'{description_match.group(1)}"BearryJ\'s custom Ironman loot filter."{description_match.group(2)}'
+
+    for j, line in enumerate(out):
+        if line.strip() != "/*@ define:module:greetings":
+            continue
+        for k in range(j + 1, len(out)):
+            if out[k].strip() == "*/":
+                break
+            greeting_match = re.match(r'^(\s*name:\s*).+$', out[k])
+            if greeting_match:
+                out[k] = f"{greeting_match.group(1)}Welcome to BearryJ's Iron Filter"
+                stats["greeting_renamed"] = 1
+                return out
+        break
+    print("WARNING: greetings module name not found")
     return out
 
 def preserve_user_settings(out):
@@ -173,7 +198,7 @@ def preserve_item_name_corrections(out):
     print("WARNING: FLETCHING_D_NAMES item-name anchor not found; Bow string correction not applied")
     return out
 
-out = preserve_meta_name(out)
+out = preserve_filter_brand(out)
 out = preserve_user_settings(out)
 out = preserve_bloodveld_head_show(out)
 out = preserve_item_name_corrections(out)

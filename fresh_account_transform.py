@@ -53,9 +53,9 @@ SHOW_UNNOTED = {
     "BRONZE_GEAR_E_SHOW_UNNOTED",
 }
 
-META_NAME = "Iron Filter Custom - Fresh Account"
+META_NAME = "BearryJ's Iron Filter - Fresh Account"
 META_DESCRIPTION = (
-    "Ironman-focused fresh-account preset: shows low-quantity and unnoted "
+    "BearryJ's Ironman fresh-account preset: shows low-quantity and unnoted "
     "early-game gear, food, runes, and resources."
 )
 
@@ -69,6 +69,21 @@ def set_meta_property(lines: list[str], start: int, end: int, prop: str, value: 
     match = pattern.match(lines[index])
     assert match is not None
     lines[index] = f'{match.group(1)}"{value}"{match.group(2)}'
+
+
+def set_greeting(lines: list[str]) -> None:
+    for i, line in enumerate(lines):
+        if line.strip() != "/*@ define:module:greetings":
+            continue
+        for j in range(i + 1, len(lines)):
+            if lines[j].strip() == "*/":
+                break
+            match = re.match(r'^(\s*name:\s*).+$', lines[j])
+            if match:
+                lines[j] = f"{match.group(1)}Welcome to BearryJ's Iron Filter - Fresh Account"
+                return
+        raise ValueError("greetings module has no name")
+    raise ValueError("could not locate the greetings module")
 
 
 def set_define(lines: list[str], name: str, value: str) -> None:
@@ -92,6 +107,7 @@ def transform(source: Path, destination: Path) -> None:
 
     set_meta_property(lines, meta_start, meta_end, "name", META_NAME)
     set_meta_property(lines, meta_start, meta_end, "description", META_DESCRIPTION)
+    set_greeting(lines)
 
     for name, value in MIN_QUANTITIES.items():
         set_define(lines, name, value)
